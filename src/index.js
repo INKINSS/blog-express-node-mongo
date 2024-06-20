@@ -8,6 +8,8 @@ const PORT = process.env.VITE_PORT || 3000;
 //conection
 conection()
 //use
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 app.use('/', router)
 
 //set
