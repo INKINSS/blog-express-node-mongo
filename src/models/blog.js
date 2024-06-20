@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 
 const postSchema = new Schema({
     card_information: {
@@ -50,7 +51,7 @@ const postSchema = new Schema({
                 },
                 content: {
                     type: String,
-                    required: fale,
+                    required: false,
                     minlength: 30,
                     maxlength: 1000
                 },

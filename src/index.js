@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express();
-const conection = require('./database/conection')
+const conection = require('./database/conection');
+const router = require('./routes/post.routes');
 
 const PORT = process.env.VITE_PORT || 3000;
 
 //conection
 conection()
-//user
+//use
+app.use('/', router)
 
 //set
 
