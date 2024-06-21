@@ -2,6 +2,12 @@ const { Schema } = require('mongoose')
 const mongoose = require('mongoose')
 
 const postSchema = new Schema({
+    id: {
+        type: mongoose.Types.ObjectId,
+        auto: true,
+        required: true,
+        unique: true
+    },
     title: {
         type: String,
         required: true,
@@ -34,7 +40,7 @@ const postSchema = new Schema({
     },
     title_content_2: {
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     content_2: {
@@ -46,6 +52,15 @@ const postSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+},
+)
+
+postSchema.set('toJSON', {
+    transform: (doc, ret) => {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
     }
 })
 
