@@ -5,7 +5,7 @@ const conection = async () => {
     try {
         const username = process.env.VITE_USERNAME_DB;
         const password = process.env.VITE_PASSWORD_DB;
-        const dbUrl = `mongodb+srv://${username}:${password}@blog.05ec6jh.mongodb.net/`;
+        const dbUrl = `mongodb+srv://${username}:${password}@blog.05ec6jh.mongodb.net/?retryWrites=true&w=majority&appName=Blog`;
 
         await mongoose.connect(dbUrl)
         console.log('Connected to MongoDB');
