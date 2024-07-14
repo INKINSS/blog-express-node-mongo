@@ -12,6 +12,19 @@ const getAllPost = async (req, res) => {
     }
 }
 
+const getPostById = async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      if (!post) {
+        return res.status(404).json({ message: 'Post no encontrado' });
+      }
+      res.status(200).json(post);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Hubo un problema al obtener el post' });
+    }
+  };
+
 const createPost = async (req, res) => {
     try {
         const { title, description, tags, introduction, title_content_1, content_1, title_content_2, content_2, conclution } = req.body;
@@ -47,6 +60,7 @@ const deletePost = async (req, res) => {
 
 module.exports = {
     getAllPost,
+    getPostById,
     createPost,
     updatePost,
     deletePost
