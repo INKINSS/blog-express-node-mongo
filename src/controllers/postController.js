@@ -3,9 +3,9 @@ const Post = require('../models/blog');
 const getAllPost = async (req, res) => {
     try {
         const posts = await Post.find();
-        res.status(200).json(posts);
+        return res.status(200).json(posts);
     } catch (error) {
-        res.status(500).json({
+        return res.status(500).json({
             message: 'Error al obtener los posts',
             error: error.message
         });
@@ -18,9 +18,9 @@ const getPostById = async (req, res) => {
         if (!post) {
             return res.status(404).json({ message: 'Post no encontrado' });
         }
-        res.status(200).json(post);
+        return res.status(200).json(post);
     } catch (error) {
-        res.status(500).json({ message: 'Hubo un problema al obtener el post' });
+        return res.status(500).json({ message: 'Hubo un problema al obtener el post' });
     }
 };
 
@@ -62,7 +62,7 @@ const createPost = async (req, res) => {
       });
   
       await post.save();
-      res.status(200).json(post);
+      return res.status(200).json(post);
     } catch (error) {
         console.log('hubo un error al hacer el post', error)
     }
@@ -77,18 +77,18 @@ const updatePost = async (req, res) => {
             content: { title, description, tags, introduction, title_content_1, content_1, title_content_2, content_2, title_content_3, content_3, title_content_4, content_4, title_content_5, content_5, conclusion }
         }, { new: true });
 
-        res.status(200).json(post);
+        return res.status(200).json(post);
     } catch (error) {
-        res.status(500).json({ message: 'Hubo un problema al actualizar el post', error: error.message });
+        return res.status(500).json({ message: 'Hubo un problema al actualizar el post', error: error.message });
     }
 };
 
 const deletePost = async (req, res) => {
     try {
         const post = await Post.findByIdAndDelete(req.params.id);
-        res.status(200).json(post);
+        return res.status(200).json(post);
     } catch (error) {
-        res.status(500).json({ message: 'Hubo un problema al eliminar el post', error: error.message });
+        return res.status(500).json({ message: 'Hubo un problema al eliminar el post', error: error.message });
     }
 };
 
